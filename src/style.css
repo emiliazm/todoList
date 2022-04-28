@@ -41,14 +41,14 @@
 .placeholder {
   border: none;
   display: flex;
-  justify-content: space-between;
   margin-top: 1.5rem;
 }
 
-.description {
+#description {
   border: none;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-style: italic;
+  width: 100%;
 }
 
 .check-list {
