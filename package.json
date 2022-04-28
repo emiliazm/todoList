@@ -1,5 +1,5 @@
 {
-  "name": "awesome-books",
+  "name": "todoList",
   "version": "1.0.0",
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "main": "index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emiliazm/awesome-books.git"
+    "url": "git+https://github.com/emiliazm/todoList.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/emiliazm/awesome-books/issues"
+    "url": "https://github.com/emiliazm/todoList/issues"
   },
-  "homepage": "https://github.com/emiliazm/awesome-books#readme",
+  "homepage": "https://github.com/emiliazm/todoList#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
