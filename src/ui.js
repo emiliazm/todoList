@@ -1,5 +1,5 @@
 import {
-  getTasks, updateTask, deleteTask,
+  getTasks, updateTask, deleteTask, loadTasks, addTask,
 } from './methods.js';
 
 // edit item
@@ -78,14 +78,20 @@ const uiAdd = (e) => {
       index: indexId,
       id,
     };
-    tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    addTask(task);
     uiCreateTask(task);
     todoForm.reset();
   }
   inputElement.focus();
 };
 
+function displayTasks() {
+  const tasks = getTasks();
+  tasks.forEach((task) => uiCreateTask(task));
+}
+
 export default function setup() {
+  loadTasks();
+  displayTasks();
   todoForm.addEventListener('submit', uiAdd);
 }
