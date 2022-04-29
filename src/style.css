@@ -116,3 +116,8 @@ li {
 .list-items.erasing .dots {
   display: none;
 }
+
+/* check status */
+.completed {
+  text-decoration: line-through;
+}

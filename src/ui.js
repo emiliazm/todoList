@@ -1,5 +1,6 @@
 import {
-  getTasks, updateTask, deleteTask, loadTasks, addTask,
+  getTasks, updateTask, deleteTask, loadTasks,
+  addTask, checkStatus, getLastId, setLastId, clearAllBtn,
 } from './methods.js';
 
 // edit item
@@ -36,13 +37,40 @@ const uiRemoveTask = (e) => {
   });
 };
 
+// status
+const uiCheckStatus = (e) => {
+  const { taskid } = e.target.parentNode.dataset;
+  checkStatus(taskid);
+
+  const liElement = e.target.parentNode;
+  liElement.classList.toggle('completed', !liElement.classList.contains('completed'));
+};
+
+// Clear completed
+const uiClearCompleted = () => {
+  const ulElement = document.querySelector('.check-list');
+  const liElements = ulElement.childNodes;
+  let i = 0;
+  while (i < liElements.length) {
+    const liElement = liElements[i];
+    const cbElement = liElement.querySelector('.check-box');
+    if (cbElement.checked) {
+      liElement.remove();
+    } else {
+      i += 1;
+      liElement.dataset.taskindex = i;
+    }
+  }
+  clearAllBtn();
+};
+
 // create item
 const uiCreateTask = (task) => {
   const tasks = getTasks();
   tasks.sort((a, b) => a.index - b.index);
   const ulList = document.querySelector('.check-list');
   const insideUl = `
-  <input id="ck-${task.id}" type="checkbox" name="checkBox">
+  <input id="ck-${task.id}" class="check-box" type="checkbox" name="checkBox">
   <label class="lb-task" id="lb-${task.id}" for="ta-${task.id}">${task.description}</label>
   <textarea id="ta-${task.id}" class="ta-task" name="edit-task">${task.description}</textarea>
   <span class="dots material-symbols-outlined">more_vert</span>
@@ -51,12 +79,18 @@ const uiCreateTask = (task) => {
 
   const liToTasks = document.createElement('li');
   liToTasks.setAttribute('class', 'list-items');
+  if (task.isCompleted) {
+    liToTasks.setAttribute('class', 'completed');
+  }
   liToTasks.setAttribute('data-taskid', `${task.id}`);
   liToTasks.setAttribute('data-taskindex', `${task.index}`);
   liToTasks.innerHTML = insideUl;
   liToTasks.querySelector('.lb-task').onclick = uiClickLabel;
   liToTasks.querySelector('.ta-task').onblur = uiBlurTextArea;
   liToTasks.querySelector('.trash').onclick = uiRemoveTask;
+  const cbElement = liToTasks.querySelector('.check-box');
+  cbElement.checked = task.isCompleted;
+  cbElement.onclick = uiCheckStatus;
   ulList.appendChild(liToTasks);
 };
 
@@ -71,7 +105,8 @@ const uiAdd = (e) => {
   if (inputValue !== '') {
     const tasks = getTasks();
     const indexId = tasks.length + 1;
-    const id = tasks.length + 1;
+    const id = getLastId() + 1;
+    setLastId(id);
     const task = {
       description: inputValue,
       isCompleted: false,
@@ -94,4 +129,5 @@ export default function setup() {
   loadTasks();
   displayTasks();
   todoForm.addEventListener('submit', uiAdd);
+  document.querySelector('.btn').addEventListener('click', () => uiClearCompleted());
 }
