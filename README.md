@@ -3,7 +3,7 @@
 # Awesome books with ES6.
 
 > Hello!
-To do list is a single page website that allows you create a to do list. Re-creating this website you will learn how to give some functionality to your sections and make your website more user-interactive. Apart from creating and display a list you will learn how to set and get items from local storage and how to use ES6 ans webpack.
+To do list is a single page website that allows you create a to do list. Re-creating this website you will learn how to give some functionality to your sections and make your website more user-interactive. Apart from creating and display a list you will learn how to set and get items from local storage and how to use ES6 and webpack.
 
 
 ## Built With
@@ -21,11 +21,12 @@ On your terminal:
 1- Clone this repository to your computer: git clone git@github.com:emiliazm/Todo-list.git.
 2- Open the project on your code editor: "cd Todo-list" and "code ."
 3- Install npm package: npm install.
+4- Run website: npm run start.
 
 
 ## Live Demo (if available)
 
-[Live Demo Link]()
+[Live Demo Link](https://emiliazm.github.io/todoList/)
 
 
 
