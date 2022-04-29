@@ -1,7 +1,18 @@
 let tasks = [];
+
+export const loadTasks = () => {
+  tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+};
+
 export const getTasks = () => tasks;
+
 export const setTasks = (pTasks) => {
   tasks = pTasks;
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+export const addTask = (task) => {
+  tasks.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
