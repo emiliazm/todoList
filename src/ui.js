@@ -5,8 +5,13 @@ import {
 
 // edit item
 const uiClickLabel = (e) => {
-  const labelElement = e.target.parentNode;
-  labelElement.classList.add('editing', 'erasing');
+  const liElement = e.target.parentNode;
+  if (liElement.classList.contains('completed')) {
+    return;
+  }
+
+  liElement.classList.add('editing', 'erasing');
+
   const taElement = e.target.nextElementSibling;
   taElement.focus();
 };
@@ -18,7 +23,7 @@ const uiBlurTextArea = (e) => {
   const { taskid } = e.target.parentNode.dataset;
   setTimeout(() => {
     taElement.classList.remove('editing', 'erasing');
-  }, 2000);
+  }, 750);
   updateTask(taskid, e.target.value);
 };
 
@@ -30,9 +35,9 @@ const uiRemoveTask = (e) => {
   const liElement = e.target.parentNode;
   liElement.remove();
 
-  const lis = document.querySelectorAll('.list-items');
+  const list = document.querySelectorAll('.list-items');
   const tasks = getTasks();
-  lis.forEach((e) => {
+  list.forEach((e) => {
     e.dataset.taskindex = tasks.find((ee) => ee.id === Number(e.dataset.taskid)).index;
   });
 };
@@ -80,7 +85,7 @@ const uiCreateTask = (task) => {
   const liToTasks = document.createElement('li');
   liToTasks.setAttribute('class', 'list-items');
   if (task.isCompleted) {
-    liToTasks.setAttribute('class', 'completed');
+    liToTasks.classList.add('completed');
   }
   liToTasks.setAttribute('data-taskid', `${task.id}`);
   liToTasks.setAttribute('data-taskindex', `${task.index}`);
