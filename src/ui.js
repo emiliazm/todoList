@@ -16,13 +16,13 @@ const uiClickLabel = (e) => {
   taElement.focus();
 };
 
-const uiBlurTextArea = (e) => {
+export const uiBlurTextArea = (e) => {
   const lblElement = e.target.previousElementSibling;
   lblElement.innerHTML = e.target.value;
-  const taElement = e.target.parentNode;
+  const liElement = e.target.parentNode;
   const { taskid } = e.target.parentNode.dataset;
   setTimeout(() => {
-    taElement.classList.remove('editing', 'erasing');
+    liElement.classList.remove('editing', 'erasing');
   }, 750);
   updateTask(taskid, e.target.value);
 };
@@ -43,7 +43,7 @@ export const uiRemoveTask = (e) => {
 };
 
 // status
-const uiCheckStatus = (e) => {
+export const uiCheckStatus = (e) => {
   const { taskid } = e.target.parentNode.dataset;
   checkStatus(taskid);
 
@@ -52,7 +52,7 @@ const uiCheckStatus = (e) => {
 };
 
 // Clear completed
-const uiClearCompleted = () => {
+export const uiClearCompleted = () => {
   const ulElement = document.querySelector('.check-list');
   const liElements = ulElement.childNodes;
   let i = 0;
