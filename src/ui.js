@@ -28,7 +28,7 @@ const uiBlurTextArea = (e) => {
 };
 
 // remove item
-const uiRemoveTask = (e) => {
+export const uiRemoveTask = (e) => {
   const { taskid } = e.target.parentNode.dataset;
   deleteTask(taskid);
 
@@ -100,12 +100,12 @@ const uiCreateTask = (task) => {
 };
 
 // add item
-const inputElement = document.querySelector('#description');
-const todoForm = document.querySelector('.add-items');
+const inputElement = () => document.querySelector('#description');
+const todoForm = () => document.querySelector('.add-items');
 
-const uiAdd = (e) => {
+export const uiAdd = (e) => {
   e.preventDefault();
-  const inputValue = inputElement.value;
+  const inputValue = inputElement().value;
 
   if (inputValue !== '') {
     const tasks = getTasks();
@@ -120,9 +120,9 @@ const uiAdd = (e) => {
     };
     addTask(task);
     uiCreateTask(task);
-    todoForm.reset();
+    todoForm().reset();
   }
-  inputElement.focus();
+  inputElement().focus();
 };
 
 function displayTasks() {
@@ -133,6 +133,6 @@ function displayTasks() {
 export default function setup() {
   loadTasks();
   displayTasks();
-  todoForm.addEventListener('submit', uiAdd);
+  todoForm().addEventListener('submit', uiAdd);
   document.querySelector('.btn').addEventListener('click', () => uiClearCompleted());
 }
