@@ -43,7 +43,7 @@ export const uiRemoveTask = (e) => {
 };
 
 // status
-const uiCheckStatus = (e) => {
+export const uiCheckStatus = (e) => {
   const { taskid } = e.target.parentNode.dataset;
   checkStatus(taskid);
 
