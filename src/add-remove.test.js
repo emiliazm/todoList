@@ -54,3 +54,27 @@ describe('Add and delete function in localStorage', () => {
     expect(getTasks()).toHaveLength(0);
   });
 });
+
+describe('Add and delete function in UI', () => {
+  test('Add task in UI', () => {
+    const ulElement = document.querySelector('.check-list');
+    const event = {
+      preventDefault: () => {},
+    };
+    uiAdd(event);
+    expect(ulElement.childNodes).toBeDefined();
+    expect(ulElement.childNodes).toHaveLength(1);
+  });
+
+  test('Remove task in UI', () => {
+    const ulElement = document.querySelector('.check-list');
+    ulElement.innerHTML = liElement;
+    const btnElement = document.querySelector('.trash');
+    const event = {
+      target: btnElement,
+    };
+    uiRemoveTask(event);
+    expect(ulElement.childNodes).toBeDefined();
+    expect(ulElement.childNodes).toHaveLength(0);
+  });
+});
