@@ -4,14 +4,20 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "main": "index.js",
   "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "clear && set NODE_OPTIONS='--experimental-vm-modules' && jest --coverage",
+    "watch": "jest --watchAll",
     "webhint": "npx hint .",
     "stylelint": "npx stylelint **/*.{css,scss}",
     "eslint": "npx eslint --fix .",
     "start": "webpack serve --open",
     "build": "webpack",
     "deploy": "gh-pages -d dist"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "verbose": true
   },
   "repository": {
     "type": "git",
@@ -25,6 +31,7 @@
   },
   "homepage": "https://github.com/emiliazm/todoList#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
@@ -33,6 +40,8 @@
     "gh-pages": "^3.2.3",
     "hint": "^6.1.11",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.0.3",
+    "jest-environment-jsdom": "^28.0.2",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
